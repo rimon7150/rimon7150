@@ -1,16 +1,15 @@
 ## Hi there 👋
 
+**Personal cheatsheets and resource lists, combining popular community frameworks with my own practical learnings and discoveries.** 
 
-**Personal Lists of which some entries are borrowed from popular lists and then enriched by my own limited knowledge** 
-
-Credits are due to:
+Credits and appreciation to the foundational projects that made this possible:
 
 - [AdGuard](https://github.com/AdguardTeam/AdguardFilters)
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- [uBlock Origin](https://github.com/uBlockOrigin/uAssets)
+- [EasyList](https://github.com/easylist/easylist)
+- [HaGezi](https://github.com/hagezi/dns-blocklists)
+- [Advoid](https://github.com/the-advoid/ad-void)
+- [OISD](https://oisd.nl)
+- [DurableNapkin](https://github.com/durablenapkin/scamblocklist)
+- [AdAway](https://adaway.org)
+- ...and any other open-source contributors whose work inspired these lists.
