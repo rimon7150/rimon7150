@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🛡️ RK's Custom Filters — Precision-Built Blocklists</title>
+<meta name="description" content="RK's Custom Filters are precision-built, stability-first blocklists for uBlock Origin, AdGuard, AdBlock Plus, DNS, and hosts files. Clean, fast, and intentional.">
+<meta name="author" content="Rimon Hossain">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rimon3134.github.io/">
+
+<meta property="og:title" content="RK's Custom Filters — Clean. Fast. Intentional.">
+<meta property="og:description" content="Performance-focused filter lists that block what matters — without breaking sites. Designed for uBlock, AdGuard, ABP, DNS & hosts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rimon3134.github.io/">
+<meta property="og:site_name" content="RK's Custom Filters">
+
+<style>
+:root {
+  --bg: #0a0c10;
+  --surface: rgba(255,255,255,0.05);
+  --surface-hover: rgba(255,255,255,0.1);
+  --border: rgba(255,255,255,0.15);
+  --text: #e4e6eb;
+  --muted: #9ca3af;
+  --primary: #00d2ff;
+  --accent: #ff8c42;
+  --radius: 14px;
+  --trans: 0.25s ease;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--trans), color var(--trans);
+}
+
+body.light {
+  --bg: #f6f7f8;
+  --surface: rgba(255,255,255,0.6);
+  --surface-hover: rgba(255,255,255,0.85);
+  --border: #d0d0d0;
+  --text: #1c1c1c;
+  --muted: #555;
+  --primary: #007aff;
+  --accent: #ff7a1a;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px;
+  background: #0a0c10;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+body.light header { background: #f6f7f8; border-bottom: 1px solid #d0d0d0; }
+
+header h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #00d2ff;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+body.light header h1 { color: #66e0c2; }
+
+header em, header p {
+  display: block;
+  font-size: 1.15rem;
+  color: #b0b8c1;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+body.light header em, body.light header p { color: #666; }
+
+.badge-top {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 8px 18px;
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  background: rgba(255,140,66,0.08);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+main { max-width: 880px; margin: auto; padding: 40px 20px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 25px;
+  margin-bottom: 28px;
+  transition: background var(--trans), transform var(--trans);
+}
+
+.card:hover { background: var(--surface-hover); transform: translateY(-2px); }
+
+.card h2 {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.5rem;
+}
+
+.rk-badge {
+  padding: 3px 8px;
+  font-size: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.rk-badge.essential { border-color: #42a5f5; color: #42a5f5; }
+.rk-badge.recommended { border-color: #00e676; color: #00e676; }
+.rk-badge.elite { border-color: #d188ff; color: #d188ff; }
+.rk-badge.active { border-color: var(--primary); color: var(--primary); }
+
+.why-rk {
+  border-left: 4px solid var(--accent);   /* punchy orange */
+  padding: 14px 18px;                     /* same as original */
+  background: var(--surface);             /* card bg */
+  border-radius: 10px;                     /* consistent radius */
+  transition: background var(--trans), transform var(--trans);
+}
+
+.why-rk:hover {
+  background: var(--surface-hover);       /* subtle brighter bg on hover */
+  transform: translateY(-2px);            /* tiny lift */
+}
+
+.why-rk ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.why-rk li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.7em;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.why-rk li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-size: 0.9em;
+  color: var(--accent);                   /* matches border */
+  font-weight: 700;
+}
+
+.copy-box { display: flex; margin-top: 15px; }
+.copy-input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px 0 0 10px;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.3);
+  color: var(--text);
+  font-family: monospace;
+}
+.copy-button {
+  padding: 12px 18px;
+  background: var(--primary);
+  border: none;
+  color: #000;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--trans);
+}
+.copy-button:hover { background: #35e1ff; }
+
+.tooltip { display: none; margin-left: 10px; color: var(--primary); font-size: 0.9rem; }
+.tooltip.show { display: inline; }
+
+.instruction-list { list-style: none; padding: 0; }
+.instruction-list li {
+  margin-bottom: 1.2em;
+  padding-left: 1.2em;
+  position: relative;
+}
+.instruction-list li::before { content: "➤"; color: var(--accent); position: absolute;   left: 0;
+  top: 0.05em;
+  font-size: 0.9em;
+  color: var(--accent);                   /* matches border */
+  font-weight: 700; }
+
+.about-text { background: rgba(255,255,255,0.04); border-left: 4px solid var(--accent); padding: 18px; border-radius: 12px; }
+
+.faq-rk {
+  border-left: 4px solid var(--accent);   /* punchy orange */
+  padding: 14px 18px;                     /* same as original */
+  background: var(--surface);             /* card bg */
+  border-radius: 10px;                     /* consistent radius */
+  transition: background var(--trans), transform var(--trans);
+}
+
+.faq-rk:hover {
+  background: var(--surface-hover);       /* subtle brighter bg on hover */
+  transform: translateY(-2px);            /* tiny lift */
+}
+
+.faq-rk ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faq-rk li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.7em;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.faq-rk li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-size: 0.9em;
+  color: var(--accent);                   /* matches border */
+  font-weight: 700;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  padding: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border);
+}
+
+#themeToggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: transform 0.2s ease;
+}
+#themeToggle:hover { transform: scale(1.15); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <button id="themeToggle" aria-label="Toggle theme">🌓</button>
+  <h1>🛡️ RK's Filter Lists</h1>
+  <em>Precision-built filters — clean, fast, and intentionally crafted.<br>Block what matters. Keep what works.</em>
+  <div class="badge-top">Stable — Not Stale ⚡</div>
+</header>
+
+<main>
+
+<section class="card why-rk">
+<h2>❓ Why RK’s Lists?</h2>
+<p>The modern web is bloated by ads, trackers, overlays, cookie walls, AI widgets, and anti-adblock scripts.</p>
+<p><b>RK’s Custom Filter Lists exist to:</b> remove noise without breaking sites.</p>
+<ul>
+<li>Performance-first — fewer rules, smarter targeting.</li>
+<li>Designed around real-world browsing, not theoretical blocking.</li>
+<li>Minimal false positives, maximum compatibility.</li>
+<li>No reckless cosmetic nuking.</li>
+<li>Updated intentionally — not churned daily.</li>
+</ul>
+<p><b>Controlled, deliberate filtering — not aggressive blocking.</b></p>
+</section>
+
+<!----------------------- MAIN CARDS ----------------------->
+	
+
+<section class="card">
+<h2>⚡ ZeroVoid <span class="rk-badge recommended">Recommended</span></h2>
+<p>Removes trackers, widgets, cookies, AI Slops, YouTube Crap, IMDb Junk, and MUCH MORE... Maximum performance with enhanced privacy.</p>
+<div class="copy-box">
+<input class="copy-input" id="ZeroVoid" value="https://raw.githubusercontent.com/rimon3134/Filters/main/ZeroVoid.txt" readonly>
+<button class="copy-button" onclick="copy('ZeroVoid',this)">Copy</button>
+<span class="tooltip">Copied!</span>
+</div>
+</section>
+
+
+	
+<section class="card">
+<h2>🔓 ZeroLock <span class="rk-badge elite">Elite</span></h2>
+<p>Neutralizes anti-adblock systems and site lockouts so pages load without nags or restrictions.</p>
+<div class="copy-box">
+<input class="copy-input" id="ZeroLock" value="https://raw.githubusercontent.com/rimon3134/Filters/main/ZeroLock.txt" readonly>
+<button class="copy-button" onclick="copy('ZeroLock',this)">Copy</button>
+<span class="tooltip">Copied!</span>
+</div>
+</section>
+
+
+	
+<section class="card">
+<h2>🌐 ZeroHosts <span class="rk-badge recommended">Recommended</span></h2>
+<p>A curated hosts list blocking ads, trackers, malware, phishing, scam, and spam domains — while preserving site functionality.</p>
+<div class="copy-box">
+<input class="copy-input" id="ZeroHosts" value="https://raw.githubusercontent.com/rimon3134/Filters/main/ZeroHosts.txt" readonly>
+<button class="copy-button" onclick="copy('ZeroHosts',this)">Copy</button>
+<span class="tooltip">Copied!</span>
+</div>
+</section>	
+
+
+	
+<section class="card">
+<h2>🛡️ ZeroAds <span class="rk-badge active">Active</span></h2>
+<p>Hybrid cosmetic + network filter list that complements ZeroHosts by removing modern web annoyances.</p>
+<div class="copy-box">
+<input class="copy-input" id="ZeroAds" value="https://raw.githubusercontent.com/rimon3134/Filters/main/ZeroAds.txt" readonly>
+<button class="copy-button" onclick="copy('ZeroAds',this)">Copy</button>
+<span class="tooltip">Copied!</span>
+</div>
+</section>
+
+<section class="card faq-rk">
+<h2>🤷‍♀️ FAQ</h2>
+<ul>	
+<strong>❓ Why not rely only on large generic lists?</strong>
+	<p><li>Domain-only lists miss same-domain annoyances like popups, redirects, and overlays. Hybrid rules handle them precisely, while maintaining site functionality.</li></p>
+
+	<strong>❓ Will sites break?</strong>
+	<p><li>Minimal false positives — hybrid rules carefully tested. Aggressive elements removed before rendering, ensuring smooth experience.</li></p>
+
+	<strong>❓ Mobile compatibility?</strong>
+	<p><li>Yes — Every list is mobile-optimized; hybrid lists work in uBlock Origin, AdGuard, and compatible apps.</li></p>
+
+	<strong>❓ Update frequency?</strong>
+	<p><li>As needed — sometimes multiple times a day, sometimes weekly.</li></p>
+	</ul>
+</section>
+	
+	
+<section class="card instructions">
+  <h2>📘 How to Add Lists</h2>
+  <ul class="instruction-list">
+    <li>
+      <strong>uBlock Origin</strong><br>
+      Settings → Filter Lists → Custom → Paste URL → Update.<br>
+    </li>
+    <li>
+      <strong>AdGuard</strong><br>
+      Settings → Filters → User Filter → Add URL → Update.<br>
+    </li>
+    <li>
+      <strong>AdBlock Plus</strong><br>
+      Options → Advanced → Add a new filter subscription → Paste URL → Apply.<br>
+    </li>
+    <li>
+      <strong>1DM+</strong><br>
+      Manage Adblock → Delete existing → Add Lists → Force Update.<br>
+	  
+    </li>	
+  </ul>
+  <strong><i>⚠️ Refresh occasionally — the internet evolves every month.</i></strong>
+</section>
+
+	
+<section class="card about">
+<div class="about-text">
+<h2>👋 RiMoN</h2>
+<p>Obsessed with tuning, testing, and refining systems until they feel right. If it can be optimized — it will be.</p>
+</div>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 Rimon Hossain · MIT License · Built with ☕, intent & controlled chaos ✨</p>
+</footer>
+
+<script>
+function copy(id, btn){
+  navigator.clipboard.writeText(document.getElementById(id).value);
+  const tip = btn.nextElementSibling;
+  tip.classList.add("show");
+  setTimeout(()=>tip.classList.remove("show"),1200);
+}
+
+const toggleBtn = document.getElementById("themeToggle");
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggleBtn.textContent = document.body.classList.contains("light") ? "🌞" : "🌓";
+});
+
+if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+  document.body.classList.add("light");
+  toggleBtn.textContent = "🌞";
+}
+</script>
+
+</body>
+</html>
